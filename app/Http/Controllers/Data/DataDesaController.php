@@ -27,8 +27,8 @@ class DataDesaController extends Controller
    */
     public function index()
     {
-        $page_title       = 'Data Desa';
-        $page_description = 'Daftar Desa';
+        $page_title         = 'Data Desa';
+        $page_description   = 'Daftar Desa';
 
         return view('data.data_desa.index', compact('page_title', 'page_description'));
     }
@@ -40,11 +40,11 @@ class DataDesaController extends Controller
      */
     public function create()
     {
-        $page_title       = 'Tambah';
-        $page_description = 'Tambah Data Desa';
-        $list_kecamatan   = Profil::with('kecamatan')->orderBy('kecamatan_id', 'desc')->get();
-        $defaultProfil    = config('app.default_profile');
-        return view('data.data_desa.create', compact('page_title', 'page_description', 'list_kecamatan', 'defaultProfil'));
+        $page_title         = 'Data Desa';
+        $page_description   = 'Tambah Data';
+        $kode_kecamatan     = config('app.default_profile');
+
+        return view('data.data_desa.create', compact('page_title', 'page_description', 'kode_kecamatan'));
     }
 
     /**
@@ -90,13 +90,14 @@ class DataDesaController extends Controller
      * @return Response
      */
     public function edit($id)
-    {
+    {   
         $desa             = DataDesa::findOrFail($id);
-        $page_title       = 'Ubah';
-        $page_description = 'Ubah Data Desa : ' . $desa->nama;
-        $list_kecamatan   = Profil::with('kecamatan')->orderBy('kecamatan_id', 'desc')->get();
-        $defaultProfil    = config('app.default_profile');
-        return view('data.data_desa.edit', compact('page_title', 'page_description', 'desa', 'list_kecamatan', 'defaultProfil'));
+
+        $page_title         = 'Data Desa';
+        $page_description   = 'Ubah Data : ' . $desa->nama;
+        $kode_kecamatan     = config('app.default_profile');
+
+        return view('data.data_desa.edit', compact('page_title', 'page_description', 'kode_kecamatan', 'desa'));
     }
 
     /**
