@@ -38,8 +38,17 @@
                                 <label>Desa</label>
                                 <select class="form-control" id="list_desa">
                                     <option value="ALL">ALL</option>
-                                    @foreach($list_desa as $desa)
-                                        <option value="{{$desa->desa_id}}">{{$desa->nama}}</option>
+                                    @foreach($list_desa as $data)
+                                        <option value="{{$data->desa_id}}">{{$data->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Bulan</label>
+                                <select class="form-control" id="list_bulan">
+                                    <option value="ALL">ALL</option>
+                                    @foreach($list_bulan as $data)
+                                        <option value="{{$data->bulan}}">{{$data->bulan}}</option>
                                     @endforeach
                                 </select>
                             </div>

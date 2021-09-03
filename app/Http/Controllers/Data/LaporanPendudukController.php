@@ -63,8 +63,9 @@ class LaporanPendudukController extends Controller
         $page_title       = 'Laporan Penduduk';
         $page_description = 'Data Penduduk';
         $list_desa        = DataDesa::get();
+        $list_bulan       = LaporanPenduduk::select('bulan')->groupBy('bulan')->get();
 
-        return view('data.laporan-penduduk.index', compact('page_title', 'page_description', 'list_desa'));
+        return view('data.laporan-penduduk.index', compact('page_title', 'page_description', 'list_desa', 'list_bulan'));
     }
 
     /**
@@ -76,6 +77,8 @@ class LaporanPendudukController extends Controller
     public function getData(Request $request)
     {
         $desa = $request->input('desa');
+        $tahun = $request->input('tahun');
+        $bulan = $request->input('bulan');
 
         $query = DB::table('das_laporan_penduduk')
             ->leftJoin('das_data_desa', 'das_laporan_penduduk.desa_id', '=', 'das_data_desa.desa_id')
