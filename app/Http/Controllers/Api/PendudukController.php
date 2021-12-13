@@ -38,7 +38,6 @@ use App\Jobs\PendudukQueueJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use ZipArchive;
 
 class PendudukController extends Controller
 {
@@ -90,7 +89,7 @@ class PendudukController extends Controller
             $extract = storage_path('app/public/penduduk/foto/');
 
             // Ekstrak file
-            $zip = new ZipArchive();
+            $zip = new \ZipArchive();
             $zip->open($path);
             $zip->extractTo($extract);
             $zip->close();

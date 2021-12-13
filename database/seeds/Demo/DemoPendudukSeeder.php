@@ -35,7 +35,6 @@ use App\Imports\ImporPenduduk;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use ZipArchive;
 
 class DemoPendudukSeeder extends Seeder
 {
@@ -56,7 +55,7 @@ class DemoPendudukSeeder extends Seeder
             $extract = storage_path('app/temp/penduduk/foto/');
 
             // Ekstrak file
-            $zip = new ZipArchive();
+            $zip = new \ZipArchive();
             $zip->open($path);
             $zip->extractTo($extract);
             $zip->close();

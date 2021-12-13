@@ -40,7 +40,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
-use ZipArchive;
 
 class LaporanApbdesController extends Controller
 {
@@ -150,7 +149,7 @@ class LaporanApbdesController extends Controller
             $extract = storage_path('app/temp/apbdes/');
 
             // Ekstrak file
-            $zip = new ZipArchive();
+            $zip = new \ZipArchive();
             $zip->open($path);
             $zip->extractTo($extract);
             $zip->close();
