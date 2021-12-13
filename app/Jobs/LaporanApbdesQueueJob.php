@@ -32,7 +32,6 @@
 namespace App\Jobs;
 
 use App\Models\LaporanApbdes;
-use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -114,7 +113,7 @@ class LaporanApbdesQueueJob implements ShouldQueue
             }
 
             DB::commit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
 
             // debug log when fail.

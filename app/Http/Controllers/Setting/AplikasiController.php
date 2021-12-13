@@ -33,7 +33,6 @@ namespace App\Http\Controllers\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\SettingAplikasi;
-use Exception;
 use Illuminate\Http\Request;
 
 class AplikasiController extends Controller
@@ -79,7 +78,7 @@ class AplikasiController extends Controller
             $penyakit->save();
 
             $this->browser_title = $request->input('value');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Pengaturan aplikasi gagal diubah!' . $e->getMessage());
         }
 

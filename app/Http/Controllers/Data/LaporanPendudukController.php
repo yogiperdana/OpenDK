@@ -35,7 +35,6 @@ use App\Http\Controllers\Controller;
 use App\Imports\ImporLaporanPenduduk;
 use App\Models\DataDesa;
 use App\Models\LaporanPenduduk;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -109,7 +108,7 @@ class LaporanPendudukController extends Controller
             Storage::disk('public')->delete('laporan_penduduk/' . $penduduk->nama_file);
 
             $penduduk->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('data.laporan-penduduk.index')->with('error', 'Data gagal dihapus!');
         }
 
@@ -160,7 +159,7 @@ class LaporanPendudukController extends Controller
             // Proses impor excell
             (new ImporLaporanPenduduk())
                 ->queue($extract . basename($fileExtracted[0]));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Import data gagal. ' . $e->getMessage());
         }
 

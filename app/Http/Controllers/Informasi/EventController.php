@@ -33,7 +33,6 @@ namespace App\Http\Controllers\Informasi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
-use Exception;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
@@ -85,7 +84,7 @@ class EventController extends Controller
             $event = new Event($request->input());
             $event->status = 'OPEN';
             $event->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Simpan Event gagal!');
         }
 
@@ -135,7 +134,7 @@ class EventController extends Controller
                 $event->attachment = $path . $fileName;
             }
             $event->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Ubah Event gagal!');
         }
 
@@ -152,7 +151,7 @@ class EventController extends Controller
     {
         try {
             Event::findOrFail($id)->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('informasi.event.index')->with('error', 'Event gagal dihapus!');
         }
 

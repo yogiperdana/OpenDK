@@ -36,7 +36,6 @@ use App\Http\Requests\ArtikelStoreRequest;
 use App\Http\Requests\ArtikelUpdateRequest;
 use App\Models\Artikel;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
@@ -108,7 +107,7 @@ class ArtikelController extends Controller
             }
 
             Artikel::create($input);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Simpan artikel gagal!');
         }
 
@@ -151,7 +150,7 @@ class ArtikelController extends Controller
             }
 
             $artikel->update($input);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Ubah artikel gagal!');
         }
 
@@ -172,7 +171,7 @@ class ArtikelController extends Controller
 
                 $artikel->delete();
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('informasi.artikel.index')->with('error', 'Artikel gagal dihapus!');
         }
 

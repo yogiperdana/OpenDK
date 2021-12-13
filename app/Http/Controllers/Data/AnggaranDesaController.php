@@ -35,7 +35,6 @@ use App\Http\Controllers\Controller;
 use App\Imports\ImporAPBDesa;
 use App\Models\AnggaranDesa;
 use App\Models\DataDesa;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -111,7 +110,7 @@ class AnggaranDesaController extends Controller
         try {
             (new ImporAPBDesa($request->only(['bulan', 'tahun', 'desa'])))
                 ->queue($request->file('file'));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Import data gagal. ' . $e->getMessage());
         }
 
@@ -151,7 +150,7 @@ class AnggaranDesaController extends Controller
 
         try {
             AnggaranDesa::findOrFail($id)->update($request->all());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Data gagal disimpan!');
         }
 
@@ -168,7 +167,7 @@ class AnggaranDesaController extends Controller
     {
         try {
             AnggaranDesa::findOrFail($id)->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('data.anggaran-desa.index')->with('error', 'Data gagal dihapus!');
         }
 

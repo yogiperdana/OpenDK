@@ -32,7 +32,6 @@
 namespace App\Jobs;
 
 use App\Models\Penduduk;
-use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -102,7 +101,7 @@ class PendudukQueueJob implements ShouldQueue
             }
 
             DB::commit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
 
             // debug log when fail.

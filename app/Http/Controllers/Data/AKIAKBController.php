@@ -34,7 +34,6 @@ namespace App\Http\Controllers\Data;
 use App\Http\Controllers\Controller;
 use App\Imports\ImporAKIAKB;
 use App\Models\AkiAkb;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -106,7 +105,7 @@ class AKIAKBController extends Controller
         try {
             (new ImporAKIAKB($request->only(['bulan', 'tahun'])))
                 ->queue($request->file('file'));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Import data gagal. ' . $e->getMessage());
         }
 
@@ -143,7 +142,7 @@ class AKIAKBController extends Controller
 
         try {
             AkiAkb::findOrFail($id)->update($request->all());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Data gagal disimpan!');
         }
 
@@ -160,7 +159,7 @@ class AKIAKBController extends Controller
     {
         try {
             AkiAkb::findOrFail($id)->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('data.aki-akb.index')->with('error', 'Data gagal dihapus!');
         }
 

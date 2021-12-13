@@ -35,7 +35,6 @@ use App\Http\Controllers\Controller;
 use App\Imports\ImporLaporanApbdes;
 use App\Models\DataDesa;
 use App\Models\LaporanApbdes;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -109,7 +108,7 @@ class LaporanApbdesController extends Controller
             Storage::disk('public')->delete('apbdes/' . $apbdes->nama_file);
 
             $apbdes->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('data.laporan-apbdes.index')->with('error', 'Data gagal dihapus!');
         }
 
@@ -161,7 +160,7 @@ class LaporanApbdesController extends Controller
             // Proses impor excell
             (new ImporLaporanApbdes())
                 ->queue($extract . basename($fileExtracted[0]));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Import data gagal. ' . $e->getMessage());
         }
 

@@ -34,7 +34,6 @@ namespace App\Http\Controllers\Informasi;
 use App\Http\Controllers\Controller;
 use App\Models\Potensi;
 use App\Models\TipePotensi;
-use Exception;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
@@ -133,7 +132,7 @@ class PotensiController extends Controller
             }
 
             $potensi->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Simpan Event gagal! ' . $e->getMessage());
         }
 
@@ -198,7 +197,7 @@ class PotensiController extends Controller
             }
 
             $potensi->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Data Potensi gagal disimpan!' . $e->getMessage());
         }
 
@@ -215,7 +214,7 @@ class PotensiController extends Controller
     {
         try {
             Potensi::findOrFail($id)->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('informasi.form-dokumen.index')->with('error', 'Potensi gagal dihapus!');
         }
 

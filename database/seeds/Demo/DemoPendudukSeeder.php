@@ -64,7 +64,7 @@ class DemoPendudukSeeder extends Seeder
             // Proses impor excell
             (new ImporPenduduk())
                 ->queue($extract . Str::replaceLast('zip', 'xlsx', $name));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Import data gagal. ' . $e->getMessage());
         }
     }

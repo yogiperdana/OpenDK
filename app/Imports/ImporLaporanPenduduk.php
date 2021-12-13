@@ -32,7 +32,6 @@
 namespace App\Imports;
 
 use App\Models\LaporanPenduduk;
-use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -91,7 +90,7 @@ class ImporLaporanPenduduk implements ToCollection, WithHeadingRow, WithChunkRea
             }
 
             DB::commit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
 
             // debug log when fail.

@@ -31,14 +31,13 @@
 
 namespace App\Http\Controllers\SistemKomplain;
 
-use App\Http\Controllers\Controller;
-use App\Models\JawabKomplain;
+use App\Models\Profil;
 use App\Models\Komplain;
 use App\Models\Penduduk;
-use Exception;
 use Illuminate\Http\Request;
+use App\Models\JawabKomplain;
 use Illuminate\Http\Response;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class SistemKomplainController extends Controller
@@ -87,7 +86,7 @@ class SistemKomplainController extends Controller
         try {
             $komplain = Komplain::where('komplain_id', '=', $request->post('q'))->firstOrFail();
             return redirect()->route('sistem-komplain.komplain', $komplain->slug);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('warning', 'Komplain tidak ditemukan!');
         }
     }
@@ -171,7 +170,7 @@ class SistemKomplainController extends Controller
             }
 
             $komplain->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Komplain gagal dikirim!');
         }
 
@@ -246,7 +245,7 @@ class SistemKomplainController extends Controller
             }
 
             $komplain->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Komplain gagal dikirim!');
         }
 
@@ -263,7 +262,7 @@ class SistemKomplainController extends Controller
     {
         try {
             Komplain::findOrFail($id)->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('sistem-komplain.index')->with('error', 'Keluhan gagal dihapus!');
         }
 
@@ -280,8 +279,8 @@ class SistemKomplainController extends Controller
     {
         try {
             $komplain = Komplain::where('slug', '=', $slug)->first();
-        } catch (Exception $ex) {
-            return back()->withInput()->with('error', $ex);
+        } catch (\Exception $e) {
+            return back()->withInput()->with('error', $e);
         }
         $camat            = Profil::first();
         $page_title       = 'Laporan';
@@ -324,7 +323,7 @@ class SistemKomplainController extends Controller
                     'msg'    => 'Jawaban  berhasil disimpan!',
                 ];
                 return response()->json($response);
-            } catch (Exception $ex) {
+            } catch (\Exception $e) {
                 $response = [
                     'status' => 'error',
                     'msg'    => 'Jawaban  gagal disimpan!',

@@ -35,7 +35,6 @@ use App\Http\Controllers\Controller;
 use App\Imports\ImporPenduduk;
 use App\Models\DataDesa;
 use App\Models\Penduduk;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -165,7 +164,7 @@ class PendudukController extends Controller
             // Proses impor excell
             (new ImporPenduduk())
                 ->queue($extract . basename($fileExtracted[0]));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Import data gagal. ' . $e->getMessage());
         }
 

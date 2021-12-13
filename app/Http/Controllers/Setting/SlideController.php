@@ -35,7 +35,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use League\Flysystem\Exception;
+
 use Yajra\DataTables\DataTables;
 
 class SlideController extends Controller
@@ -104,7 +104,7 @@ class SlideController extends Controller
                 $slide->gambar = $path . $fileName;
             }
             $slide->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Slide gagal ditambah!');
         }
 
@@ -168,7 +168,7 @@ class SlideController extends Controller
                 $slide->gambar = $path . $fileName;
             }
             $slide->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Data Slide gagal disimpan!' . $e->getMessage());
         }
 
@@ -185,7 +185,7 @@ class SlideController extends Controller
     {
         try {
             Slide::findOrFail($id)->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Slide gagal dihapus!');
         }
 

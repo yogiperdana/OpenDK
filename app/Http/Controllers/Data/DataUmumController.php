@@ -33,7 +33,6 @@ namespace App\Http\Controllers\Data;
 
 use App\Http\Controllers\Controller;
 use App\Models\DataUmum;
-use Exception;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
@@ -89,7 +88,7 @@ class DataUmumController extends Controller
         try {
             $data = $request->sumber_luas_wilayah==1 ? $request->all() : $request->except('luas_wilayah');
             DataUmum::findOrFail($id)->update($data);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Update Data Umum gagal!');
         }
 

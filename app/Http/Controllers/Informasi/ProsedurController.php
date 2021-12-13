@@ -36,7 +36,6 @@ use App\Models\Prosedur;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use League\Flysystem\Exception;
 use Yajra\DataTables\DataTables;
 
 class ProsedurController extends Controller
@@ -114,7 +113,7 @@ class ProsedurController extends Controller
             }
 
             $prosedur->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Prosedur gagal disimpan!' . $e->getMessage());
         }
 
@@ -178,7 +177,7 @@ class ProsedurController extends Controller
             }
 
             $prosedur->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Prosedur gagal disimpan!' . $e->getMessage());
         }
 
@@ -195,7 +194,7 @@ class ProsedurController extends Controller
     {
         try {
             Prosedur::findOrFail($id)->delete();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Prosedur gagal dihapus!');
         }
 
