@@ -31,13 +31,13 @@
 
 namespace App\Http\Controllers\SistemKomplain;
 
-use App\Models\Profil;
+use App\Http\Controllers\Controller;
+use App\Models\JawabKomplain;
 use App\Models\Komplain;
 use App\Models\Penduduk;
+use App\Models\Profil;
 use Illuminate\Http\Request;
-use App\Models\JawabKomplain;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class SistemKomplainController extends Controller
