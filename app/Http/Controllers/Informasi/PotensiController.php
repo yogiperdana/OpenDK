@@ -35,7 +35,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Potensi;
 use App\Models\TipePotensi;
 use Illuminate\Http\Request;
-
 use Illuminate\Http\Response;
 
 class PotensiController extends Controller

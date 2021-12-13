@@ -35,7 +35,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
 use Yajra\DataTables\DataTables;
 
 class SlideController extends Controller
