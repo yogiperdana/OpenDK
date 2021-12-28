@@ -43,11 +43,15 @@ class ArtikelController extends Controller
 {
     public function index()
     {
+        Sentinel::hasAnyAccess(['artikel.view']);
+
         return view('informasi.artikel.index');
     }
 
     public function getDataArtikel(Request $request)
     {
+        Sentinel::hasAnyAccess(['artikel.view']);
+
         if ($request->ajax()) {
             return DataTables::of(Artikel::all())
                 ->addIndexColumn()
@@ -75,11 +79,15 @@ class ArtikelController extends Controller
 
     public function create()
     {
+        Sentinel::hasAnyAccess(['artikel.create']);
+
         return view('informasi.artikel.create');
     }
 
     public function store(ArtikelRequest $request)
     {
+        Sentinel::hasAnyAccess(['artikel.update']);
+
         try {
             $input = $request->all();
             if ($request->hasFile('gambar')) {
@@ -99,11 +107,15 @@ class ArtikelController extends Controller
 
     public function edit(Artikel $artikel)
     {
+        Sentinel::hasAnyAccess(['artikel.update']);
+
         return view('informasi.artikel.edit', compact('artikel'));
     }
 
     public function update(ArtikelRequest $request, Artikel $artikel)
     {
+        Sentinel::hasAnyAccess(['artikel.update']);
+
         try {
             $input = $request->all();
 
@@ -126,6 +138,8 @@ class ArtikelController extends Controller
 
     public function destroy(Artikel $artikel)
     {
+        Sentinel::hasAnyAccess(['artikel.update']);
+
         try {
             if ($artikel->delete()) {
                 Storage::delete('public/artikel/' . $artikel->getOriginal('gambar'));
